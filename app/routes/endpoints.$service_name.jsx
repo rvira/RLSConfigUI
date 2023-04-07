@@ -1,7 +1,7 @@
 import { json } from "react-router";
 import FormGenerator from "../components/FormGenerator";
 import { Link, useCatch } from "@remix-run/react";
-import { getHeaders, sampleRole } from "../../data/notes";
+import { getHeaders, sampleRole, SomeComponent } from "../../data/notes";
 
 import style from './../index.css'
 
@@ -15,13 +15,7 @@ export default function DisplayPage() {
 }
 
 export async function loader({ params }) {
-  const head = await getHeaders();
-  const service = head.find(h => h.service_name === params.service_name);
-  let serviceRole = service ? service.roles : null
-
-  const roleSample = await sampleRole()     // flag: to be changed
-  const accessRole = roleSample.some(role => serviceRole.includes(role))
-
+  const accessRole = await SomeComponent(params.service_name);
   if (!accessRole) {
     throw json(
       { message: 'You cannot access the page' },

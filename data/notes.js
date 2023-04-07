@@ -1,6 +1,5 @@
 import yaml from 'js-yaml';
 import fs from 'fs/promises';
-import { json } from 'react-router';
 
 export async function getStoredYaml() {
   const rawFileContent = await fs.readFile('form.yml', { encoding: 'utf-8' });
@@ -34,5 +33,17 @@ export async function sampleRole() {
   const decodedString = base64.decode(b64);
   const data = JSON.parse(decodedString);
   return data.roles;
+}
+
+
+export async function SomeComponent(path) {
   
+  const head = await getHeaders();
+  const service = head.find(h => h.service_name === path);
+  let serviceRole = service ? service.roles : null
+
+  const roleSample = await sampleRole()     // flag: to be changed
+  const accessRole = roleSample.some(role => serviceRole.includes(role))
+
+  return accessRole ? true : false;
 }

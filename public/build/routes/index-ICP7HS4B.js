@@ -124,4 +124,4 @@ function Index() {
 export {
   Index as default
 };
-//# sourceMappingURL=/build/routes/index-QBD4MFJM.js.map
+//# sourceMappingURL=/build/routes/index-ICP7HS4B.js.map

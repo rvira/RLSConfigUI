@@ -1,5 +1,5 @@
 import { useLoaderData, json } from 'react-router';
-import { getHeaders, sampleRole } from '../../data/notes';
+import { SomeComponent, getHeaders, sampleRole } from '../../data/notes';
 import BlockList from '../components/BlockList';
 import style from './../index.css'
 
@@ -27,7 +27,7 @@ export async function loader({ params }) {
 
   if (!selectedService) {
     throw json(
-      { message: 'Could not find note for Id ' },
+      { message: 'You cannot access this page ' },
       { status: 404 }
     );
   }

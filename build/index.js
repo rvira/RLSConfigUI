@@ -381,7 +381,7 @@ __export(endpoints_service_name_exports, {
   default: () => DisplayPage,
   loader: () => loader
 });
-var import_react_router2 = require("react-router");
+var import_react_router = require("react-router");
 
 // app/components/FormGenerator.jsx
 var import_swagger_ui_dist = require("swagger-ui-dist"), import_react3 = require("react"), import_jsx_dev_runtime3 = require("react/jsx-dev-runtime");
@@ -439,7 +439,7 @@ var FormGenerator_default = FormGenerator;
 var import_react4 = require("@remix-run/react");
 
 // data/notes.js
-var import_js_yaml = __toESM(require("js-yaml")), import_promises = __toESM(require("fs/promises")), import_react_router = require("react-router");
+var import_js_yaml = __toESM(require("js-yaml")), import_promises = __toESM(require("fs/promises"));
 async function getHeaders() {
   let rawFileContent = await import_promises.default.readFile("roles.json", { encoding: "utf-8" });
   return JSON.parse(rawFileContent).headers ?? [];
@@ -448,6 +448,10 @@ async function sampleRole() {
   var base64 = require("base-64");
   let rawFileContent = await import_promises.default.readFile("id_token", { encoding: "utf-8" }), b64 = JSON.parse(rawFileContent), decodedString = base64.decode(b64);
   return JSON.parse(decodedString).roles;
+}
+async function SomeComponent(path) {
+  let service = (await getHeaders()).find((h) => h.service_name === path), serviceRole = service ? service.roles : null;
+  return !!(await sampleRole()).some((role) => serviceRole.includes(role));
 }
 
 // app/index.css
@@ -474,9 +478,8 @@ function DisplayPage() {
   }, this);
 }
 async function loader({ params }) {
-  let service = (await getHeaders()).find((h) => h.service_name === params.service_name), serviceRole = service ? service.roles : null;
-  if (!(await sampleRole()).some((role) => serviceRole.includes(role)))
-    throw (0, import_react_router2.json)(
+  if (!await SomeComponent(params.service_name))
+    throw (0, import_react_router.json)(
       { message: "You cannot access the page" },
       {
         status: 404,
@@ -491,30 +494,30 @@ function CatchBoundary2() {
   return /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("main", { className: "info-message", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("h1", { children: "An error occurred!" }, void 0, !1, {
       fileName: "app/routes/endpoints.$service_name.jsx",
-      lineNumber: 44,
+      lineNumber: 38,
       columnNumber: 5
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("p", { children: message }, void 0, !1, {
       fileName: "app/routes/endpoints.$service_name.jsx",
-      lineNumber: 45,
+      lineNumber: 39,
       columnNumber: 5
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("p", { children: [
       "Back to ",
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_react4.Link, { to: "/", children: "safety" }, void 0, !1, {
         fileName: "app/routes/endpoints.$service_name.jsx",
-        lineNumber: 47,
+        lineNumber: 41,
         columnNumber: 15
       }, this),
       "!"
     ] }, void 0, !0, {
       fileName: "app/routes/endpoints.$service_name.jsx",
-      lineNumber: 46,
+      lineNumber: 40,
       columnNumber: 5
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/endpoints.$service_name.jsx",
-    lineNumber: 43,
+    lineNumber: 37,
     columnNumber: 5
   }, this);
 }
@@ -522,30 +525,30 @@ function ErrorBoundary2({ error }) {
   return console.log(error), /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("main", { className: "error", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("h1", { children: "An error related to your notes occurred!" }, void 0, !1, {
       fileName: "app/routes/endpoints.$service_name.jsx",
-      lineNumber: 56,
+      lineNumber: 50,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("p", { children: error.message }, void 0, !1, {
       fileName: "app/routes/endpoints.$service_name.jsx",
-      lineNumber: 57,
+      lineNumber: 51,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("p", { children: [
       "Back to ",
       /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_react4.Link, { to: "/", children: "safety" }, void 0, !1, {
         fileName: "app/routes/endpoints.$service_name.jsx",
-        lineNumber: 59,
+        lineNumber: 53,
         columnNumber: 17
       }, this),
       "!"
     ] }, void 0, !0, {
       fileName: "app/routes/endpoints.$service_name.jsx",
-      lineNumber: 58,
+      lineNumber: 52,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/endpoints.$service_name.jsx",
-    lineNumber: 55,
+    lineNumber: 49,
     columnNumber: 5
   }, this);
 }
@@ -556,7 +559,7 @@ __export(routes_exports, {
   default: () => Index,
   loader: () => loader2
 });
-var import_react_router3 = require("react-router");
+var import_react_router2 = require("react-router");
 
 // app/components/AddBlock.jsx
 var import_react5 = require("@remix-run/react");
@@ -629,7 +632,7 @@ var BlockList_default2 = BlockList;
 // app/routes/index.jsx
 var import_jsx_dev_runtime7 = require("react/jsx-dev-runtime");
 function Index() {
-  let headerData = (0, import_react_router3.useLoaderData)();
+  let headerData = (0, import_react_router2.useLoaderData)();
   return /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("main", { id: "content", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("h1", { children: "Want to know which endpoints ??" }, void 0, !1, {
       fileName: "app/routes/index.jsx",
@@ -671,8 +674,8 @@ function Index() {
 async function loader2({ params }) {
   let head = await getHeaders(), headDetails = await sampleRole(), selectedService = head.filter((service) => service.roles.some((role) => headDetails.includes(role)));
   if (!selectedService)
-    throw (0, import_react_router3.json)(
-      { message: "Could not find note for Id " },
+    throw (0, import_react_router2.json)(
+      { message: "You cannot access this page " },
       { status: 404 }
     );
   return selectedService;
@@ -684,18 +687,39 @@ __export(__exports, {
   action: () => action,
   loader: () => loader3
 });
-var import_react_router4 = require("react-router"), import_axios = __toESM(require("axios"));
+var import_react_router3 = require("react-router"), import_axios = __toESM(require("axios"));
 async function action({ request, params }) {
-  let par = params["*"] || "", result = await request.json(), res = await import_axios.default.post("https://hkdk.events/5qKuXBcslFYE", result);
-  return (0, import_react_router4.json)(res.data);
+  let par = params["*"] || "", res = "", path = request.headers.get("Referer").split("/").pop();
+  if (SomeComponent(path)) {
+    let result = await request.json();
+    res = await import_axios.default.post("https://hkdk.events/5qKuXBcslFYE", result);
+  } else
+    throw (0, import_react_router3.json)(
+      { message: "You cannot access the page" },
+      {
+        status: 404,
+        statusText: "No access found"
+      }
+    );
+  return (0, import_react_router3.json)(res.data);
 }
 async function loader3({ request, params }) {
-  let par = params["*"] || "", res = await import_axios.default.get("https://fakestoreapi.com/products");
-  return (0, import_react_router4.json)(res.data);
+  let par = params["*"] || "", path = request.headers.get("Referer").split("/").pop();
+  if (SomeComponent(path)) {
+    let res = await import_axios.default.get("https://fakestoreapi.com/products");
+    return (0, import_react_router3.json)(res.data);
+  } else
+    throw (0, import_react_router3.json)(
+      { message: "You cannot access the page" },
+      {
+        status: 404,
+        statusText: "No access found"
+      }
+    );
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "7795a822", entry: { module: "/build/entry.client-TLEEKFZ7.js", imports: ["/build/_shared/chunk-M7ZJGQMJ.js", "/build/_shared/chunk-UZZVYDWO.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-4BUJVBBX.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/$": { id: "routes/$", parentId: "root", path: "*", index: void 0, caseSensitive: void 0, module: "/build/routes/$-UWUHPDRA.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/endpoints.$service_name": { id: "routes/endpoints.$service_name", parentId: "root", path: "endpoints/:service_name", index: void 0, caseSensitive: void 0, module: "/build/routes/endpoints.$service_name-FZ6DJTUH.js", imports: ["/build/_shared/chunk-57I75WXF.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-QBD4MFJM.js", imports: ["/build/_shared/chunk-57I75WXF.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-7795A822.js" };
+var assets_manifest_default = { version: "d4cb4af9", entry: { module: "/build/entry.client-TLEEKFZ7.js", imports: ["/build/_shared/chunk-M7ZJGQMJ.js", "/build/_shared/chunk-UZZVYDWO.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-4BUJVBBX.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/$": { id: "routes/$", parentId: "root", path: "*", index: void 0, caseSensitive: void 0, module: "/build/routes/$-GIIIA4B2.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/endpoints.$service_name": { id: "routes/endpoints.$service_name", parentId: "root", path: "endpoints/:service_name", index: void 0, caseSensitive: void 0, module: "/build/routes/endpoints.$service_name-OOFPF2CL.js", imports: ["/build/_shared/chunk-57I75WXF.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-ICP7HS4B.js", imports: ["/build/_shared/chunk-57I75WXF.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-D4CB4AF9.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public/build", future = { unstable_cssModules: !1, unstable_cssSideEffectImports: !1, unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, unstable_vanillaExtract: !1, v2_errorBoundary: !1, v2_meta: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_node_exports }, routes = {
