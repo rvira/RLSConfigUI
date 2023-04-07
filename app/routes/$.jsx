@@ -9,7 +9,7 @@ export async function action({ request, params }) {
     // console.log("ccccc",par)
     const path = request.headers.get("Referer").split("/").pop()
 
-    if(SomeComponent(path)){
+    if (SomeComponent(path)) {
         const result = await request.json();
         const res = await axios.post("https://hkdk.events/5qKuXBcslFYE", result)
         return json(res.data);
@@ -18,10 +18,10 @@ export async function action({ request, params }) {
         throw json(
             { message: 'You cannot access the page' },
             {
-              status: 404,
-              statusText: 'No access found',
+                status: 404,
+                statusText: 'No access found',
             }
-          );
+        );
     }
 
 }
@@ -32,7 +32,7 @@ export async function loader({ request, params }) {
     // console.log("ccccc", par)
     const path = request.headers.get("Referer").split("/").pop()
 
-    if(SomeComponent(path)){    
+    if (SomeComponent(path)) {
         const res = await axios.get("https://fakestoreapi.com/products")
         return json(res.data);
     }
@@ -40,10 +40,10 @@ export async function loader({ request, params }) {
         throw json(
             { message: 'You cannot access the page' },
             {
-              status: 404,
-              statusText: 'No access found',
+                status: 404,
+                statusText: 'No access found',
             }
-          );
+        );
     }
 }
 
