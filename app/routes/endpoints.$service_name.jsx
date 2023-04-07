@@ -1,0 +1,63 @@
+import { json } from "react-router";
+import FormGenerator from "../components/FormGenerator";
+import { Link, useCatch } from "@remix-run/react";
+import { getHeaders, sampleRole } from "../../data/notes";
+
+import style from './../index.css'
+
+export default function DisplayPage() {
+  return (
+    <main>
+      <link rel="stylesheet" type="text/css" href={style} />
+      <FormGenerator />
+    </main>
+  );
+}
+
+export async function loader({ params }) {
+  const head = await getHeaders();
+  const service = head.find(h => h.service_name === params.service_name);
+  let serviceRole = service ? service.roles : null
+
+  const roleSample = await sampleRole()     // flag: to be changed
+  const accessRole = roleSample.some(role => serviceRole.includes(role))
+
+  if (!accessRole) {
+    throw json(
+      { message: 'You cannot access the page' },
+      {
+        status: 404,
+        statusText: 'No access found',
+      }
+    );
+  }
+  return params;
+}
+
+export function CatchBoundary() {
+  const caughtResponse = useCatch();
+
+  const message = caughtResponse.data?.message || 'Data not found.';
+
+  return (
+    <main className="info-message">
+    <h1>An error occurred!</h1>
+    <p>{message}</p>
+    <p>
+      Back to <Link to="/">safety</Link>!
+    </p>
+  </main>
+  );
+}
+export function ErrorBoundary({ error }) {
+  console.log(error)
+  return (
+    <main className="error">
+      <h1>An error related to your notes occurred!</h1>
+      <p>{error.message}</p>
+      <p>
+        Back to <Link to="/">safety</Link>!
+      </p>
+    </main>
+  );
+}

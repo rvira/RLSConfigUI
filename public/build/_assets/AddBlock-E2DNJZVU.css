@@ -1,0 +1,23 @@
+/* app/components/AddBlock.css */
+.block:nth-child(odd) {
+  display: block;
+  width: 90%;
+  border: none;
+  border-width: 20px;
+  background-color: #89f6c5;
+  border-color: #0f0f0f;
+  border-radius: 12px;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  font-family: sans-serif;
+  margin-left: 35px;
+}
+.block:nth-child(even) {
+  background-color: #61affe;
+  border-color: #61affe;
+}
+.block:hover {
+  background-color: #16f18f;
+}

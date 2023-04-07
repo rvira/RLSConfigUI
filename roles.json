@@ -1,0 +1,36 @@
+{
+    "headers":[
+        { 
+            "service_name": "EVE-RLS",
+            "spec_file": "https://virtserver.swaggerhub.com/gr8Adakron/storage-service-get-signed/1.0.0",
+            "url": "/endpoints/asasd",
+            "roles" : [
+                "EVE_ADMIN", "EVE_WRITER", "SUPER_ADMIN", "avkyc_agent"
+            ]
+        },
+        {
+            "service_name": "DC-RLS",
+            "spec_file": "https://virtserver.swaggerhub.com/gr8Adakron/storage-service-get-signed/1.0.0",
+            "url": "/endpoints",
+            "roles" : [
+                "DC_ADMIN", "DC_WRITER", "SUPER_ADMIN","EVE_WRITER"
+            ]
+        },
+        {
+            "service_name": "PG-RLS",
+            "spec_file": "https://virtserver.swaggerhub.com/gr8Adakron/storage-service-get-signed/1.0.0",
+            "url": "/endpoints",
+            "roles" : [
+                "PG_ADMIN", "PG_WRITER", "SUPER_ADMIN"
+            ]
+        },
+        {
+            "service_name": "VS-RLS",
+            "spec_file": "https://virtserver.swaggerhub.com/gr8Adakron/storage-service-get-signed/1.0.0",
+            "url": "/endpoints",
+            "roles" : [
+                "PG_ADMIN", "PG_WRITER", "SUPER_ADMIN", "avkyc_agent"
+            ]
+        }
+    ]
+}

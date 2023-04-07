@@ -1,0 +1,142 @@
+openapi: 3.0.0
+info:
+  description: Auth Service
+  version: 1.0.0
+  title: Auth Service "/rate_limit/identity"  interface
+  contact:
+    email: satyam.anand@idfy.com
+paths:
+  /ext/rls/identity/<identity>/rate_limit:
+    post:
+      tags:
+        - set_identity_rate_limit
+      summary: Set Rate Limit based on Identity
+      parameters:
+        - in: query
+          name: identity
+          description: identity for which rate limit is to be fetched
+          required: false
+          schema:
+            type: string
+            example: ''
+      description: Add/Update Rate Limit corresponding to the identity to the system
+      responses:
+        '200':
+          description: response that's set to database (updated)
+        '400':
+          description: BAD_REQUEST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                service:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      service_name:
+                        type: string
+                        format: string
+                        example: ind_pan_ocr
+                      threshold:
+                        type: integer
+                        format: integer
+                        example: 10
+                      time_window:
+                        type: integer
+                        format: integer
+                        example: 1000
+                      hard_limit:
+                        type: boolean
+                        format: boolaen
+                  
+
+    get:
+      tags:
+        - get_identity_rate_limit
+      summary: Fetch Rate Limit based on Identity
+      description: |
+        This will fetch the rate limit corresponding to the identity.
+      parameters:
+        - in: query
+          name: identity
+          description: identity for which rate limit is to be fetched.
+          required: true
+          schema:
+            type: string
+            example: ''
+      responses:
+        '200':
+          description: response from database or an empty map
+        '400':
+          description: INVALID_IDENTITY_NAME
+  /ext/rls/service/<service>/rate_limit:
+    post:
+      tags:
+        - set_service_rate_limit
+      summary: Set Rate Limit based on Service
+      parameters:
+        - in: query
+          name: service
+          description: service for which rate limit is to be fetched
+          required: true
+          schema:
+            type: string
+            example: pan_ind_ocr
+      description: Add/Update Rate Limit corresponding to the service to the system
+      responses:
+        '200':
+          description: response that's set to database (updated)
+        '400':
+          description: BAD_REQUEST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                service:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      service_name:
+                        type: string
+                        format: string
+                      threshold:
+                        type: integer
+                        format: integer
+                        example: 10
+                      time_window:
+                        type: integer
+                        format: integer
+                        example: 1000
+                      hard_limit:
+                        type: boolean
+                        format: boolaen
+    get:
+      tags:
+        - get_service_rate_limit
+      summary: Fetch Rate Limit based on Service
+      description: |
+        This will fetch the rate limit corresponding to the identity.
+      parameters:
+        - in: query
+          name: service
+          description: service for which rate limit is to be fetched
+          required: true
+          schema:
+            type: string
+            example: pan_ind_ocr
+      responses:
+        '200':
+          description: response from database or an empty map
+        '400':
+          description: INVALID_SERVICE_NAME
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: >- 
+      abc.com
+      
