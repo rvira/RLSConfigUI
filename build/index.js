@@ -689,10 +689,10 @@ __export(__exports, {
 });
 var import_react_router3 = require("react-router"), import_axios = __toESM(require("axios"));
 async function action({ request, params }) {
-  let par = params["*"] || "", res = "", path = request.headers.get("Referer").split("/").pop();
+  let par = params["*"] || "", path = request.headers.get("Referer").split("/").pop();
   if (SomeComponent(path)) {
-    let result = await request.json();
-    res = await import_axios.default.post("https://hkdk.events/5qKuXBcslFYE", result);
+    let result = await request.json(), res = await import_axios.default.post("https://hkdk.events/5qKuXBcslFYE", result);
+    return (0, import_react_router3.json)(res.data);
   } else
     throw (0, import_react_router3.json)(
       { message: "You cannot access the page" },
@@ -701,7 +701,6 @@ async function action({ request, params }) {
         statusText: "No access found"
       }
     );
-  return (0, import_react_router3.json)(res.data);
 }
 async function loader3({ request, params }) {
   let par = params["*"] || "", path = request.headers.get("Referer").split("/").pop();

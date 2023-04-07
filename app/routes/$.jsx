@@ -7,12 +7,12 @@ export async function action({ request, params }) {
 
     const par = (params['*'] || '')
     // console.log("ccccc",par)
-    let res = "";
     const path = request.headers.get("Referer").split("/").pop()
 
     if(SomeComponent(path)){
         const result = await request.json();
-        res = await axios.post("https://hkdk.events/5qKuXBcslFYE", result)
+        const res = await axios.post("https://hkdk.events/5qKuXBcslFYE", result)
+        return json(res.data);
     }
     else {
         throw json(
@@ -23,7 +23,6 @@ export async function action({ request, params }) {
             }
           );
     }
-    return json(res.data);
 
 }
 
