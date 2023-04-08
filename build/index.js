@@ -449,7 +449,7 @@ async function sampleRole() {
   let rawFileContent = await import_promises.default.readFile("id_token", { encoding: "utf-8" }), b64 = JSON.parse(rawFileContent), decodedString = base64.decode(b64);
   return JSON.parse(decodedString).roles;
 }
-async function SomeComponent(path) {
+async function getAccessRole(path) {
   let service = (await getHeaders()).find((h) => h.service_name === path), serviceRole = service ? service.roles : null;
   return !!(await sampleRole()).some((role) => serviceRole.includes(role));
 }
@@ -478,7 +478,7 @@ function DisplayPage() {
   }, this);
 }
 async function loader({ params }) {
-  if (!await SomeComponent(params.service_name))
+  if (!await getAccessRole(params.service_name))
     throw (0, import_react_router.json)(
       { message: "You cannot access the page" },
       {
@@ -690,7 +690,7 @@ __export(__exports, {
 var import_react_router3 = require("react-router"), import_axios = __toESM(require("axios"));
 async function action({ request, params }) {
   let par = params["*"] || "", path = request.headers.get("Referer").split("/").pop();
-  if (SomeComponent(path)) {
+  if (getAccessRole(path)) {
     let result = await request.json(), res = await import_axios.default.post("https://hkdk.events/5qKuXBcslFYE", result);
     return (0, import_react_router3.json)(res.data);
   } else
@@ -718,7 +718,7 @@ async function loader3({ request, params }) {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "d4cb4af9", entry: { module: "/build/entry.client-TLEEKFZ7.js", imports: ["/build/_shared/chunk-M7ZJGQMJ.js", "/build/_shared/chunk-UZZVYDWO.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-4BUJVBBX.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/$": { id: "routes/$", parentId: "root", path: "*", index: void 0, caseSensitive: void 0, module: "/build/routes/$-GIIIA4B2.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/endpoints.$service_name": { id: "routes/endpoints.$service_name", parentId: "root", path: "endpoints/:service_name", index: void 0, caseSensitive: void 0, module: "/build/routes/endpoints.$service_name-OOFPF2CL.js", imports: ["/build/_shared/chunk-57I75WXF.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-ICP7HS4B.js", imports: ["/build/_shared/chunk-57I75WXF.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-D4CB4AF9.js" };
+var assets_manifest_default = { version: "7e7610f0", entry: { module: "/build/entry.client-TLEEKFZ7.js", imports: ["/build/_shared/chunk-M7ZJGQMJ.js", "/build/_shared/chunk-UZZVYDWO.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-4BUJVBBX.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/$": { id: "routes/$", parentId: "root", path: "*", index: void 0, caseSensitive: void 0, module: "/build/routes/$-GIIIA4B2.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/endpoints.$service_name": { id: "routes/endpoints.$service_name", parentId: "root", path: "endpoints/:service_name", index: void 0, caseSensitive: void 0, module: "/build/routes/endpoints.$service_name-E4PTM2OB.js", imports: ["/build/_shared/chunk-57I75WXF.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-QYDXFLWT.js", imports: ["/build/_shared/chunk-57I75WXF.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-7E7610F0.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public/build", future = { unstable_cssModules: !1, unstable_cssSideEffectImports: !1, unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, unstable_vanillaExtract: !1, v2_errorBoundary: !1, v2_meta: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_node_exports }, routes = {

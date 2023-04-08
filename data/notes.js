@@ -36,7 +36,7 @@ export async function sampleRole() {
 }
 
 
-export async function SomeComponent(path) {
+export async function getAccessRole(path) {
   
   const head = await getHeaders();
   const service = head.find(h => h.service_name === path);

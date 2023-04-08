@@ -1,6 +1,6 @@
 import { json } from 'react-router'
 import axios from 'axios'
-import { SomeComponent } from '../../data/notes';
+import { getAccessRole } from '../../data/notes';
 
 
 export async function action({ request, params }) {
@@ -9,7 +9,7 @@ export async function action({ request, params }) {
     // console.log("ccccc",par)
     const path = request.headers.get("Referer").split("/").pop()
 
-    if (SomeComponent(path)) {
+    if (getAccessRole(path)) {
         const result = await request.json();
         const res = await axios.post("https://hkdk.events/5qKuXBcslFYE", result)
         return json(res.data);
