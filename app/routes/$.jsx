@@ -32,7 +32,7 @@ export async function loader({ request, params }) {
     // console.log("ccccc", par)
     const path = request.headers.get("Referer").split("/").pop()
 
-    if (SomeComponent(path)) {
+    if (getAccessRole(path)) {
         const res = await axios.get("https://fakestoreapi.com/products")
         return json(res.data);
     }

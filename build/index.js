@@ -704,7 +704,7 @@ async function action({ request, params }) {
 }
 async function loader3({ request, params }) {
   let par = params["*"] || "", path = request.headers.get("Referer").split("/").pop();
-  if (SomeComponent(path)) {
+  if (getAccessRole(path)) {
     let res = await import_axios.default.get("https://fakestoreapi.com/products");
     return (0, import_react_router3.json)(res.data);
   } else
