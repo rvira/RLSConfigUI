@@ -1,5 +1,5 @@
 import { useLoaderData, json } from 'react-router';
-import { getHeaders, sampleRole } from '../../data/notes';
+import { getHeaders, sampleRole } from '../../function/helper';
 import BlockList from '../components/BlockList';
 import style from './../index.css'
 

@@ -21,10 +21,6 @@ export async function getHeaders() {
 }
 
 
-export function storeNotes(notes) {
-  return fs.writeFile('form.json', JSON.stringify({ notes: notes || [] }));
-}
-
 export async function sampleRole() {
   var base64 = require('base-64');
 
@@ -43,7 +39,7 @@ export async function getAccessRole(path) {
   let serviceRole = service ? service.roles : null
 
   const roleSample = await sampleRole()     // flag: to be changed
-  const accessRole = roleSample.some(role => serviceRole.includes(role))
+  const accessRole = roleSample.some(role => serviceRole?.includes(role))
 
   return accessRole ? true : false;
 }

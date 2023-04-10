@@ -1,7 +1,7 @@
 import { json } from "react-router";
 import FormGenerator from "../components/FormGenerator";
 import { Link, useCatch } from "@remix-run/react";
-import { getAccessRole } from "../../data/notes";
+import { getAccessRole } from "../../function/helper";
 
 import style from './../index.css'
 
@@ -43,6 +43,7 @@ export function CatchBoundary() {
   </main>
   );
 }
+
 export function ErrorBoundary({ error }) {
   console.log(error)
   return (

@@ -438,7 +438,7 @@ var FormGenerator_default = FormGenerator;
 // app/routes/endpoints.$service_name.jsx
 var import_react4 = require("@remix-run/react");
 
-// data/notes.js
+// function/helper.js
 var import_js_yaml = __toESM(require("js-yaml")), import_promises = __toESM(require("fs/promises"));
 async function getHeaders() {
   let rawFileContent = await import_promises.default.readFile("roles.json", { encoding: "utf-8" });
@@ -451,7 +451,7 @@ async function sampleRole() {
 }
 async function getAccessRole(path) {
   let service = (await getHeaders()).find((h) => h.service_name === path), serviceRole = service ? service.roles : null;
-  return !!(await sampleRole()).some((role) => serviceRole.includes(role));
+  return !!(await sampleRole()).some((role) => serviceRole == null ? void 0 : serviceRole.includes(role));
 }
 
 // app/index.css
@@ -688,11 +688,12 @@ __export(__exports, {
   loader: () => loader3
 });
 var import_react_router3 = require("react-router"), import_axios = __toESM(require("axios"));
-async function action({ request, params }) {
-  let par = params["*"] || "", path = request.headers.get("Referer").split("/").pop();
+async function action({ request }) {
+  var _a;
+  let path = (_a = request == null ? void 0 : request.headers) == null ? void 0 : _a.get("Referer").split("/").pop();
   if (getAccessRole(path)) {
-    let result = await request.json(), res = await import_axios.default.post("https://hkdk.events/5qKuXBcslFYE", result);
-    return (0, import_react_router3.json)(res.data);
+    let result = await request;
+    return (await import_axios.default.post("https://hkdk.events/5qKuXBcslFYE", result)).data;
   } else
     throw (0, import_react_router3.json)(
       { message: "You cannot access the page" },
@@ -702,23 +703,22 @@ async function action({ request, params }) {
       }
     );
 }
-async function loader3({ request, params }) {
-  let par = params["*"] || "", path = request.headers.get("Referer").split("/").pop();
-  if (getAccessRole(path)) {
-    let res = await import_axios.default.get("https://fakestoreapi.com/products");
-    return (0, import_react_router3.json)(res.data);
-  } else
-    throw (0, import_react_router3.json)(
-      { message: "You cannot access the page" },
-      {
-        status: 404,
-        statusText: "No access found"
-      }
-    );
+async function loader3({ request }) {
+  var _a;
+  let path = (_a = request == null ? void 0 : request.headers) == null ? void 0 : _a.get("Referer").split("/").pop();
+  if (getAccessRole(path))
+    return (await import_axios.default.get("https://fakestoreapi.com/products/1")).data;
+  throw (0, import_react_router3.json)(
+    { message: "You cannot access the page" },
+    {
+      status: 404,
+      statusText: "No access found"
+    }
+  );
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "7e7610f0", entry: { module: "/build/entry.client-TLEEKFZ7.js", imports: ["/build/_shared/chunk-M7ZJGQMJ.js", "/build/_shared/chunk-UZZVYDWO.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-4BUJVBBX.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/$": { id: "routes/$", parentId: "root", path: "*", index: void 0, caseSensitive: void 0, module: "/build/routes/$-GIIIA4B2.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/endpoints.$service_name": { id: "routes/endpoints.$service_name", parentId: "root", path: "endpoints/:service_name", index: void 0, caseSensitive: void 0, module: "/build/routes/endpoints.$service_name-E4PTM2OB.js", imports: ["/build/_shared/chunk-57I75WXF.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-QYDXFLWT.js", imports: ["/build/_shared/chunk-57I75WXF.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-7E7610F0.js" };
+var assets_manifest_default = { version: "a58ca23f", entry: { module: "/build/entry.client-TLEEKFZ7.js", imports: ["/build/_shared/chunk-M7ZJGQMJ.js", "/build/_shared/chunk-UZZVYDWO.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-4BUJVBBX.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/$": { id: "routes/$", parentId: "root", path: "*", index: void 0, caseSensitive: void 0, module: "/build/routes/$-GIIIA4B2.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/endpoints.$service_name": { id: "routes/endpoints.$service_name", parentId: "root", path: "endpoints/:service_name", index: void 0, caseSensitive: void 0, module: "/build/routes/endpoints.$service_name-GRKBBPJS.js", imports: ["/build/_shared/chunk-57I75WXF.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-WSDWHQQX.js", imports: ["/build/_shared/chunk-57I75WXF.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-A58CA23F.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public/build", future = { unstable_cssModules: !1, unstable_cssSideEffectImports: !1, unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, unstable_vanillaExtract: !1, v2_errorBoundary: !1, v2_meta: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_node_exports }, routes = {
