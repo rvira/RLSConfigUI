@@ -1,17 +1,17 @@
-import yaml from 'js-yaml';
+// import yaml from 'js-yaml';
 import fs from 'fs/promises';
 
-export async function getStoredYaml() {
-  const rawFileContent = await fs.readFile('form.yml', { encoding: 'utf-8' });
-  const data = yaml.load(rawFileContent);
-  const result = data?.paths ? Object.keys(data.paths).map(key=>{
-        return {
-            key,
-            data: data.paths[key]
-        }
-  }) : [];
-  return result;
-}
+// export async function getStoredYaml() {
+//   const rawFileContent = await fs.readFile('form.yml', { encoding: 'utf-8' });
+//   const data = yaml.load(rawFileContent);
+//   const result = data?.paths ? Object.keys(data.paths).map(key=>{
+//         return {
+//             key,
+//             data: data.paths[key]
+//         }
+//   }) : [];
+//   return result;
+// }
 
 export async function getHeaders() {
   const rawFileContent = await fs.readFile('roles.json', { encoding: 'utf-8' });
