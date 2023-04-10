@@ -40881,30 +40881,30 @@ function ErrorBoundary({ error }) {
   return /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("main", { className: "error", children: [
     /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("h1", { children: "An error related to your notes occurred!" }, void 0, false, {
       fileName: "browser-route-module:routes/endpoints.$service_name.jsx?browser",
-      lineNumber: 36,
+      lineNumber: 37,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("p", { children: error.message }, void 0, false, {
       fileName: "browser-route-module:routes/endpoints.$service_name.jsx?browser",
-      lineNumber: 37,
+      lineNumber: 38,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)("p", { children: [
       "Back to ",
       /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Link, { to: "/", children: "safety" }, void 0, false, {
         fileName: "browser-route-module:routes/endpoints.$service_name.jsx?browser",
-        lineNumber: 39,
+        lineNumber: 40,
         columnNumber: 17
       }, this),
       "!"
     ] }, void 0, true, {
       fileName: "browser-route-module:routes/endpoints.$service_name.jsx?browser",
-      lineNumber: 38,
+      lineNumber: 39,
       columnNumber: 7
     }, this)
   ] }, void 0, true, {
     fileName: "browser-route-module:routes/endpoints.$service_name.jsx?browser",
-    lineNumber: 35,
+    lineNumber: 36,
     columnNumber: 5
   }, this);
 }
@@ -40913,4 +40913,4 @@ export {
   ErrorBoundary,
   DisplayPage as default
 };
-//# sourceMappingURL=/build/routes/endpoints.$service_name-GRKBBPJS.js.map
+//# sourceMappingURL=/build/routes/endpoints.$service_name-JN25FC32.js.map
