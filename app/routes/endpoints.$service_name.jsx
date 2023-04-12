@@ -3,7 +3,7 @@ import FormGenerator from "../components/FormGenerator";
 import { Link, useCatch } from "@remix-run/react";
 import { getAccessRole } from "../../function/helper";
 
-import style from './../index.css'
+import style from './../../styles/index.css'
 
 export default function DisplayPage() {
   return (

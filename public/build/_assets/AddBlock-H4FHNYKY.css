@@ -1,0 +1,98 @@
+/* app/components/AddBlock.css */
+button {
+  margin: 20px;
+}
+.custom-btn {
+  background: #62a03f;
+  border-width: 2px;
+  border-radius: 4px;
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 4px 30px;
+  height: 50px;
+  color: #fff;
+  width: 95%;
+  cursor: pointer;
+  transition: all .3s ease;
+  position: relative;
+  display: inline-block;
+  box-shadow:
+    inset 2px 2px 2px #ffffff80,
+    7px 7px 20px #0000001a,
+    4px 4px 5px #0000001a;
+  outline: none;
+}
+.btn-4 {
+  border-color: #62a03f;
+  border-radius: 4px;
+  line-height: 42px;
+  padding: 0;
+  border: none;
+  text-decoration: none;
+}
+.btn-4:hover {
+  background-color: #3a7b15;
+  border-color: #000;
+  border-width: .2em;
+}
+.btn-4 span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.btn-4:before,
+.btn-4:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 0;
+  box-shadow:
+    4px 4px 6px #ffffffe6,
+    -4px -4px 6px #747d8833,
+    inset -4px -4px 6px #ffffffe6,
+    inset 4px 4px 6px #747d884d;
+  transition: all .3s ease;
+}
+.btn-4:before {
+  height: 0%;
+  width: .1px;
+}
+.btn-4:after {
+  width: 0%;
+  height: .1px;
+}
+.btn-4:hover:before {
+  height: 100%;
+}
+.btn-4:hover:after {
+  width: 100%;
+}
+.btn-4 span:before,
+.btn-4 span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  box-shadow:
+    4px 4px 6px #ffffffe6,
+    -4px -4px 6px #747d8833,
+    inset -4px -4px 6px #ffffffe6,
+    inset 4px 4px 6px #747d884d;
+  transition: all .3s ease;
+}
+.btn-4 span:before {
+  width: .1px;
+  height: 0%;
+}
+.btn-4 span:after {
+  width: 0%;
+  height: .1px;
+}
+.btn-4 span:hover:before {
+  height: 100%;
+}
+.btn-4 span:hover:after {
+  width: 100%;
+}

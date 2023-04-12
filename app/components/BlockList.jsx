@@ -4,15 +4,12 @@ import styles from './BlockList.css'
 function BlockList({ headerData }) {
 
     return (
-        <ol>
-            <link rel="stylesheet" type="text/css" href = {styles} /> 
+        <div>
+            <link rel="stylesheet" type="text/css" href={styles} />
             {headerData.map((header) => (
-                <li key={header.service_name}>
-                    <AddBlock block_name={header.service_name} url = {header.url} />
-                    <br />
-                </li>
+                <AddBlock block_name={header.service_name} url={header.url} key={header.service_name} />
             ))}
-        </ol>
+        </div>
     );
 
 }

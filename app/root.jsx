@@ -9,14 +9,15 @@ import {
   Link
 } from "@remix-run/react";
 import styles from "./components/swagger-ui.css"
+import MainNavigation from "./components/MainNavigation";
 
 
 export const meta = () => ({
   charset: "utf-8",
-  title: "New Remix App",
+  title: "Alchemist",
   viewport: "width=device-width,initial-scale=1",
 });
-
+            
 export default function App() {
   return (
     <html lang="en">
@@ -26,6 +27,7 @@ export default function App() {
         <link rel="stylesheet" type="text/css" href = {styles} />
       </head>
       <body>
+        <MainNavigation />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
@@ -46,7 +48,7 @@ export function CatchBoundary() {
       </head>
       <body>
         <header>
-          {/* <MainNavigation /> */}
+          <MainNavigation />
         </header>
         <main className="error">
           <h1>{caughtResponse.statusText}</h1>
@@ -73,7 +75,7 @@ export function ErrorBoundary({ error }) {
       </head>
       <body>
         <header>
-          {/* <MainNavigation /> */}
+          <MainNavigation />
         </header>
         <main className="error">
           <h1>An error occurred!</h1>
