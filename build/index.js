@@ -241,7 +241,7 @@ var MainNavigation_default2 = MainNavigation;
 // app/root.jsx
 var import_jsx_dev_runtime3 = require("react/jsx-dev-runtime"), meta = () => ({
   charset: "utf-8",
-  title: "Alchemist",
+  title: "Rate Limit Config",
   viewport: "width=device-width,initial-scale=1"
 });
 function App() {
@@ -813,7 +813,7 @@ async function loader3({ request }) {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "693d213c", entry: { module: "/build/entry.client-TLEEKFZ7.js", imports: ["/build/_shared/chunk-M7ZJGQMJ.js", "/build/_shared/chunk-UZZVYDWO.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-OLEIWECW.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/$": { id: "routes/$", parentId: "root", path: "*", index: void 0, caseSensitive: void 0, module: "/build/routes/$-GIIIA4B2.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/endpoints.$service_name": { id: "routes/endpoints.$service_name", parentId: "root", path: "endpoints/:service_name", index: void 0, caseSensitive: void 0, module: "/build/routes/endpoints.$service_name-7UPZUSD6.js", imports: ["/build/_shared/chunk-URN4G5B6.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-GBR2VQCT.js", imports: ["/build/_shared/chunk-URN4G5B6.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-693D213C.js" };
+var assets_manifest_default = { version: "df32062b", entry: { module: "/build/entry.client-TLEEKFZ7.js", imports: ["/build/_shared/chunk-M7ZJGQMJ.js", "/build/_shared/chunk-UZZVYDWO.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-HWYXHYYH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/$": { id: "routes/$", parentId: "root", path: "*", index: void 0, caseSensitive: void 0, module: "/build/routes/$-GIIIA4B2.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/endpoints.$service_name": { id: "routes/endpoints.$service_name", parentId: "root", path: "endpoints/:service_name", index: void 0, caseSensitive: void 0, module: "/build/routes/endpoints.$service_name-7UPZUSD6.js", imports: ["/build/_shared/chunk-URN4G5B6.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !0, hasErrorBoundary: !0 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-GBR2VQCT.js", imports: ["/build/_shared/chunk-URN4G5B6.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, cssBundleHref: void 0, hmr: void 0, url: "/build/manifest-DF32062B.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var assetsBuildDirectory = "public/build", future = { unstable_cssModules: !1, unstable_cssSideEffectImports: !1, unstable_dev: !1, unstable_postcss: !1, unstable_tailwind: !1, unstable_vanillaExtract: !1, v2_errorBoundary: !1, v2_meta: !1, v2_routeConvention: !1 }, publicPath = "/build/", entry = { module: entry_server_node_exports }, routes = {

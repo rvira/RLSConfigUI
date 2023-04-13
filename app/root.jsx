@@ -14,7 +14,7 @@ import MainNavigation from "./components/MainNavigation";
 
 export const meta = () => ({
   charset: "utf-8",
-  title: "Alchemist",
+  title: "Rate Limit Config",
   viewport: "width=device-width,initial-scale=1",
 });
             

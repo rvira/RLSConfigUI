@@ -113,7 +113,7 @@ var MainNavigation_default2 = MainNavigation;
 var import_jsx_dev_runtime2 = __toESM(require_jsx_dev_runtime());
 var meta = () => ({
   charset: "utf-8",
-  title: "Alchemist",
+  title: "Rate Limit Config",
   viewport: "width=device-width,initial-scale=1"
 });
 function App() {
@@ -358,4 +358,4 @@ export {
   App as default,
   meta
 };
-//# sourceMappingURL=/build/root-OLEIWECW.js.map
+//# sourceMappingURL=/build/root-HWYXHYYH.js.map
