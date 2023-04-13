@@ -1,0 +1,139 @@
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_HOST: tcp://docker:2375/
+  APP_NAME: alchemist
+  APP_VSN: "0.0.1"
+  CI_CACHE_KEY: "621adfb054814052d35ff61dbf5d1446"
+  NVM_DIR: /usr/local/nvm
+  IMAGE_PROJECT_ID: idfy-gitlab
+  IMAGE_NAME: alchemist
+  IMAGE: asia.gcr.io/$IMAGE_PROJECT_ID/$IMAGE_NAME:$CI_COMMIT_SHA
+
+default:
+  image: node:18.13.0
+  interruptible: true
+
+stages:
+  - test
+  - dockerize
+  # - deploy
+
+# Test
+
+.test: &test
+  stage: test
+
+lint:
+  <<: *test
+  cache:
+    key: "lint-$CI_CACHE_KEY"
+    paths:
+      - _build/test/lib/
+      - deps/
+  script:
+    - npm install
+    - echo "Running Lint Test"
+    - npm run lint
+  except:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /\[skip[ _-]lint?\]/i
+      - $CI_COMMIT_MESSAGE =~ /\[skip[ _-]tests?\]/i
+
+# static_code_analysis:
+#   <<: *test
+#   image: python
+#   before_script:
+#     - pip3 install --upgrade njsscan
+#   script:
+#     - njsscan . --config .njsscan
+#   except:
+#     refs:
+#       - uat
+#     variables:
+#       - $CI_COMMIT_MESSAGE =~ /\[skip[ _-]audit?\]/i
+#       - $CI_COMMIT_MESSAGE =~ /\[skip[ _-]tests?\]/i
+
+# Dockerize
+
+.dockerize: &dockerize
+  stage: dockerize
+  image: google/cloud-sdk:alpine
+  services:
+    - docker:dind
+  before_script:
+    - echo "$GOOGLE_AUTH" > gcloud-service-key.json # Google Cloud service accounts
+    - gcloud auth activate-service-account --key-file gcloud-service-key.json
+    - gcloud config set project $GOOGLE_PROJECT_ID
+    - gcloud auth configure-docker
+  script:
+    - docker build -t $IMAGE .
+    - docker push $IMAGE
+  except:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /\[skip[ _-]deploy?\]|WIP/i
+
+dockerize_staging:
+  <<: *dockerize
+  variables:
+    GOOGLE_PROJECT_ID: idfy-shared-staging
+  only:
+    - develop
+
+dockerize_production:
+  <<: *dockerize
+  variables:
+    GOOGLE_PROJECT_ID: idfy-shared-prod
+  only:
+    - master
+
+# Deploy
+
+# .deploy: &deploy
+#   stage: deploy
+#   image: google/cloud-sdk
+#   inherit:
+#     default: false
+#   dependencies: []
+#   before_script:
+#     - echo "$GOOGLE_AUTH" > gcloud-service-key.json # Google Cloud service accounts
+#     - gcloud auth activate-service-account --key-file gcloud-service-key.json
+#     - gcloud config set project $GOOGLE_PROJECT_ID
+#     - gcloud --quiet config set container/cluster $GOOGLE_CLUSTER_NAME
+#   except:
+#     variables:
+#       - $CI_COMMIT_MESSAGE =~ /\[skip[ _-]deploy?\]|WIP/i
+
+# deploy_staging:
+#   <<: *deploy
+#   resource_group: staging
+#   variables:
+#     GOOGLE_PROJECT_ID: idfy-shared-staging
+#     GOOGLE_CLUSTER_NAME: shared-staging-internal-cluster
+#     GOOGLE_COMPUTE_ZONE: asia-south1-b
+#     USE_GKE_GCLOUD_AUTH_PLUGIN: "true"
+#   script:
+#     - gcloud config set compute/zone $GOOGLE_COMPUTE_ZONE
+#     - gcloud --quiet container clusters get-credentials $GOOGLE_CLUSTER_NAME
+#     - bash kube/deploy.sh $CI_COMMIT_SHA $GOOGLE_PROJECT_ID $IMAGE
+#   environment:
+#     name: staging
+#   only:
+#     - develop
+
+# deploy_production:
+#   <<: *deploy
+#   resource_group: production
+#   when: manual
+#   variables:
+#     GOOGLE_PROJECT_ID: idfy-shared-prod
+#     GOOGLE_CLUSTER_NAME: shared-prod-internal-cluster
+#     GOOGLE_COMPUTE_REGION: asia-south1
+#     USE_GKE_GCLOUD_AUTH_PLUGIN: "true"
+#   script:
+#     - gcloud --quiet container clusters get-credentials $GOOGLE_CLUSTER_NAME --region $GOOGLE_COMPUTE_REGION
+#     - bash kube/deploy.sh $CI_COMMIT_SHA $GOOGLE_PROJECT_ID $IMAGE
+#   environment:
+#     name: production
+#   only:
+#     - master
