@@ -1,7 +1,7 @@
 import { Link } from "@remix-run/react";
 import style from './AddBlock.css'
 
-function AddBlock({ block_name, url }) {
+function AddBlock({ block_name, url}) {
     return (
         <div>
             <link rel="stylesheet" type="text/css" href={style} />
